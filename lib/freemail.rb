@@ -1,8 +1,9 @@
 require 'freemail/version'
 
 module Freemail
-  DISPOSABLE = Hash[File.readlines('data/disposable.txt').map { |d| [d.strip.downcase] }]
-  FREE = Hash[File.readlines('data/free.txt').map { |d| [d.strip.downcase] }]
+  ROOT = File.join(File.dirname(File.expand_path(__FILE__)), '../')
+  DISPOSABLE = Hash[File.readlines("#{ROOT}/data/disposable.txt").map { |d| [d.strip.downcase] }]
+  FREE = Hash[File.readlines("#{ROOT}/data/free.txt").map { |d| [d.strip.downcase] }]
 
   def self.free?(email)
     FREE.key?(get_domain(email))

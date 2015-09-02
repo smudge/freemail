@@ -1,41 +1,53 @@
 # Freemail
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/freemail`. To experiment with that code, run `bin/console` for an interactive prompt.
+A ruby implementation of the npm [freemail](https://github.com/willwhite/freemail) module, which
+provides a database of free and [disposable](http://en.wikipedia.org/wiki/Disposable_email_address)
+email domains.
 
-TODO: Delete this and the text above, and describe your gem
+All credit for `free.txt` and `disposable.txt` go to the npm
+[freemail](https://github.com/willwhite/freemail) maintainers.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'freemail'
+gem 'freemail', require: false
 ```
 
 And then execute:
 
     $ bundle
 
-Or install it yourself as:
-
-    $ gem install freemail
-
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+require 'freemail'
+
+Freemail.free?('howard@gmail.com')
+# true
+Freemail.free?('george@mailinater.com')
+# true
+Freemail.disposable?('howard@gmail.com')
+# false
+Freemail.disposable?('george@mailinater.com')
+# true
+```
 
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+To install this gem onto your local machine, run `bundle exec rake install`, or specify a path option in your gemfile:
+
+```ruby
+gem 'freemail', path: '../path/to/your/copy'
+```
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/freemail.
-
+Bug reports and pull requests are welcome on GitHub at https://github.com/smudge/freemail.
 
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-

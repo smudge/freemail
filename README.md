@@ -27,7 +27,7 @@ require 'freemail'
 Freemail.free?('howard@gmail.com')
 # true
 Freemail.free?('george@mailinater.com')
-# true
+# false
 Freemail.disposable?('howard@gmail.com')
 # false
 Freemail.disposable?('george@mailinater.com')

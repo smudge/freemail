@@ -42,4 +42,23 @@ describe Freemail do
       it { is_expected.to be(false) }
     end
   end
+
+  describe '.free_or_disposable?' do
+    subject { Freemail.free_or_disposable?(email) }
+
+    context 'with a free email' do
+      let(:email) { 'gopackers@gmail.com' }
+      it { is_expected.to be(true) }
+    end
+
+    context 'with a disposable email' do
+      let(:email) { 'metroidfan9000@10minutemail.com' }
+      it { is_expected.to be(true) }
+    end
+
+    context 'with a paid/private email' do
+      let(:email) { 'steve@apple.com' }
+      it { is_expected.to be(false) }
+    end
+  end
 end

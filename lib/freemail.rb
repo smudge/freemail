@@ -13,6 +13,10 @@ module Freemail
     DISPOSABLE.key?(get_domain(email))
   end
 
+  def self.free_or_disposable?(email)
+    free?(email) || disposable?(email)  
+  end
+  
   def self.get_domain(email)
     email.split('@').last.downcase.strip
   end

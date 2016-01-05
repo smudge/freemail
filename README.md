@@ -1,4 +1,4 @@
-# Freemail
+# Freemail [![Build Status](https://img.shields.io/travis/smudge/freemail.svg)](https://travis-ci.org/smudge/freemail) [![Code Climate](https://img.shields.io/codeclimate/github/smudge/freemail.svg)](https://codeclimate.com/github/smudge/freemail) [![Test Coverage](https://img.shields.io/codeclimate/coverage/github/smudge/freemail.svg)](https://codeclimate.com/github/smudge/freemail/coverage)
 
 A ruby implementation of the npm [freemail](https://github.com/willwhite/freemail) module, which
 provides a database of free and [disposable](http://en.wikipedia.org/wiki/Disposable_email_address)

@@ -4,13 +4,14 @@
 0wnd.org
 10minutemail.com
 20minutemail.com
-21cn.com
 2prong.com
 30minutemail.com
+33mail.com
 4warding.com
 9ox.net
 a-bc.net
 afrobacon.com
+alivance.com
 amilegit.com
 amiri.net
 amiriindustries.com
@@ -37,6 +38,7 @@ cool.fr.nf
 courriel.fr.nf
 courrieltemporaire.com
 cubiclink.com
+cuvox.de
 dacoolest.com
 dandikmail.com
 dayrep.com
@@ -160,6 +162,7 @@ meinspamschutz.de
 meltmail.com
 messagebeamer.de
 mintemail.com
+mohmal.com
 moncourrier.fr.nf
 monemail.fr.nf
 monmail.fr.nf
@@ -206,7 +209,6 @@ privacy.net
 proxymail.eu
 prtnx.com
 putthisinyourspamdatabase.com
-qq.com
 quickinbox.com
 rcpt.at
 recode.me
@@ -280,6 +282,7 @@ temporaryforwarding.com
 temporaryinbox.com
 thankyou2010.com
 thisisnotmyrealemail.com
+thrott.com
 throwawayemailaddress.com
 tilien.com
 tmailinator.com
@@ -298,6 +301,8 @@ trashmail.net
 trashmail.org
 trashmailer.com
 trashymail.com
+trbvm.com
+trbvn.com
 trillianpro.com
 twinmail.de
 tyldd.com

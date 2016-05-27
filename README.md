@@ -4,7 +4,7 @@ A ruby implementation of the npm [freemail](https://github.com/willwhite/freemai
 provides a database of free and [disposable](http://en.wikipedia.org/wiki/Disposable_email_address)
 email domains.
 
-All credit for `free.txt` and `disposable.txt` go to the npm
+All credit for `free.txt` and `disposable.txt` goes to the npm
 [freemail](https://github.com/willwhite/freemail) maintainers.
 
 ## Installation

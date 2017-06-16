@@ -5,6 +5,16 @@ module Freemail
   DISPOSABLE = File.readlines("#{ROOT}/data/disposable.txt").map { |d| d.strip.downcase }
   FREE = File.readlines("#{ROOT}/data/free.txt").map { |d| d.strip.downcase }
 
+  def self.add_disposable_domains(domains)
+    DISPOSABLE.push(*domains)
+    DISPOSABLE.uniq!
+  end
+
+  def self.add_free_domains(domains)
+    FREE.push(*domains)
+    FREE.uniq!
+  end
+
   def self.free?(email)
     FREE.include?(get_domain(email))
   end

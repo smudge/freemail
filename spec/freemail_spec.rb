@@ -61,4 +61,44 @@ describe Freemail do
       it { is_expected.to be(false) }
     end
   end
+
+  describe '.add_free_domains' do
+    let!(:domain) { 'apple.com' }
+    let(:email) { "steve@#{domain}" }
+    subject { Freemail.free?(email) }
+
+    context 'without additional domains.' do
+      it { is_expected.to be(false) }
+    end
+
+    context 'with an additional domain.' do
+      before { Freemail.add_free_domains(domain) }
+      it { is_expected.to be(true) }
+    end
+
+    context 'with a list of additional domains' do
+      before { Freemail.add_free_domains([domain]) }
+      it { is_expected.to be(true) }
+    end
+  end
+
+  describe '.add_disposable_domains' do
+    let!(:domain) { 'apple.com' }
+    let(:email) { "steve@#{domain}" }
+    subject { Freemail.disposable?(email) }
+
+    context 'without additional domains.' do
+      it { is_expected.to be(false) }
+    end
+
+    context 'with an additional domain.' do
+      before { Freemail.add_disposable_domains(domain) }
+      it { is_expected.to be(true) }
+    end
+
+    context 'with a list of additional domains' do
+      before { Freemail.add_disposable_domains([domain]) }
+      it { is_expected.to be(true) }
+    end
+  end
 end

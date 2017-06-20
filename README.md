@@ -21,6 +21,8 @@ And then execute:
 
 ## Usage
 
+### Basic usage
+
 ```ruby
 require 'freemail'
 
@@ -33,6 +35,25 @@ Freemail.disposable?('howard@gmail.com')
 Freemail.disposable?('george@mailinater.com')
 # true
 ```
+
+### API for custom domains
+
+```ruby
+require 'freemail'
+
+email = 'example@superlocalfreeemail.com'
+
+Freemail.free?(email)
+# false
+
+Freemail.add_free_domains('superlocalfreeemail.com')
+# or by Array
+Freemail.add_free_domains(['superlocalfreeemail.com'])
+
+Freemail.free?(email)
+# true
+```
+
 
 ## Development
 

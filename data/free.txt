@@ -1182,6 +1182,7 @@ hot.ee
 hotbrev.com
 hotfire.net
 hotletter.com
+hotmail.be
 hotmail.ca
 hotmail.ch
 hotmail.co.il
@@ -1472,6 +1473,7 @@ listomail.com
 littleapple.com
 littleblueroom.com
 live.at
+live.be
 live.ca
 live.cl
 live.cn
@@ -3017,6 +3019,7 @@ mox.pp.ua
 mp4.it
 mr-potatohead.com
 msgbox.com
+msn.be
 msn.cn
 msn.com
 msn.nl
@@ -3795,6 +3798,7 @@ techspot.com
 tele2.nl
 telebot.com
 teleline.es
+telenet.be
 telerymd.com
 teleworm.us
 telfort.nl

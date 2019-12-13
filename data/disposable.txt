@@ -221,6 +221,7 @@ proxymail.eu
 prtnx.com
 putthisinyourspamdatabase.com
 quickinbox.com
+qq.com
 rcpt.at
 recode.me
 recursor.net

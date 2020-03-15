@@ -1,8 +1,9 @@
 language: ruby
 rvm:
- - 2.2.4
- - 2.1.8
- - 2.0.0-p648
+ - 2.4.9
+ - 2.5.7
+ - 2.6.5
+ - 2.7.0
 script:
 - bundle exec rake
 - bundle exec codeclimate-test-reporter

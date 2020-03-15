@@ -4,6 +4,9 @@ rvm:
  - 2.5.7
  - 2.6.5
  - 2.7.0
+before_install:
+- yes | gem update --system --force
+- gem install bundler
 script:
 - bundle exec rake
 - bundle exec codeclimate-test-reporter

@@ -1,8 +1,17 @@
 language: ruby
 rvm:
- - 2.2.4
- - 2.1.8
- - 2.0.0-p648
+ - 2.4.9
+ - 2.5.7
+ - 2.6.5
+ - 2.7.0
+before_install:
+- yes | gem update --system --force
+- gem install bundler
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 script:
-- bundle exec rake
-- bundle exec codeclimate-test-reporter
+  - bundle exec rake
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT

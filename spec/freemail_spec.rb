@@ -22,6 +22,36 @@ describe Freemail do
       let(:email) { 'steve@apple.com' }
       it { is_expected.to be(false) }
     end
+
+    context 'with a user-name-only email' do
+      let(:email) { 'apple.com@' }
+      it { expect { subject }.to raise_error(ArgumentError, /Invalid email/) }
+    end
+
+    context 'with a domain-only email' do
+      let(:email) { '@apple.com' }
+      it { expect { subject }.to raise_error(ArgumentError, /Invalid email/) }
+    end
+
+    context 'with an @-only email' do
+      let(:email) { '@' }
+      it { expect { subject }.to raise_error(ArgumentError, /Invalid email/) }
+    end
+
+    context 'with a blank-parts email' do
+      let(:email) { ' @ ' }
+      it { expect { subject }.to raise_error(ArgumentError, /Invalid email/) }
+    end
+
+    context 'with a blank text' do
+      let(:email) { '' }
+      it { expect { subject }.to raise_error(ArgumentError, /Invalid email/) }
+    end
+
+    context 'with a double-@ email' do
+      let(:email) { 'gopackers@@gmail.com' }
+      it { expect { subject }.to raise_error(ArgumentError, /Invalid email/) }
+    end
   end
 
   describe '.disposable?' do
@@ -41,6 +71,36 @@ describe Freemail do
       let(:email) { 'steve@apple.com' }
       it { is_expected.to be(false) }
     end
+
+    context 'with a user-name-only email' do
+      let(:email) { '10minutemail.com@' }
+      it { expect { subject }.to raise_error(ArgumentError, /Invalid email/) }
+    end
+
+    context 'with a domain-only email' do
+      let(:email) { '@10minutemail.com' }
+      it { expect { subject }.to raise_error(ArgumentError, /Invalid email/) }
+    end
+
+    context 'with an @-only email' do
+      let(:email) { '@' }
+      it { expect { subject }.to raise_error(ArgumentError, /Invalid email/) }
+    end
+
+    context 'with a blank-parts email' do
+      let(:email) { ' @ ' }
+      it { expect { subject }.to raise_error(ArgumentError, /Invalid email/) }
+    end
+
+    context 'with a blank text' do
+      let(:email) { '' }
+      it { expect { subject }.to raise_error(ArgumentError, /Invalid email/) }
+    end
+
+    context 'with a double-@ email' do
+      let(:email) { 'gopackers@@gmail.com' }
+      it { expect { subject }.to raise_error(ArgumentError, /Invalid email/) }
+    end
   end
 
   describe '.free_or_disposable?' do
@@ -59,6 +119,36 @@ describe Freemail do
     context 'with a paid/private email' do
       let(:email) { 'steve@apple.com' }
       it { is_expected.to be(false) }
+    end
+
+    context 'with a user-name-only email' do
+      let(:email) { 'apple.com@' }
+      it { expect { subject }.to raise_error(ArgumentError, /Invalid email/) }
+    end
+
+    context 'with a domain-only email' do
+      let(:email) { '@apple.com' }
+      it { expect { subject }.to raise_error(ArgumentError, /Invalid email/) }
+    end
+
+    context 'with an @-only email' do
+      let(:email) { '@' }
+      it { expect { subject }.to raise_error(ArgumentError, /Invalid email/) }
+    end
+
+    context 'with a blank-parts email' do
+      let(:email) { ' @ ' }
+      it { expect { subject }.to raise_error(ArgumentError, /Invalid email/) }
+    end
+
+    context 'with a blank text' do
+      let(:email) { '' }
+      it { expect { subject }.to raise_error(ArgumentError, /Invalid email/) }
+    end
+
+    context 'with a double-@ email' do
+      let(:email) { 'gopackers@@gmail.com' }
+      it { expect { subject }.to raise_error(ArgumentError, /Invalid email/) }
     end
   end
 

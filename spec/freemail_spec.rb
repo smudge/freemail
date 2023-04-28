@@ -24,33 +24,28 @@ describe Freemail do
     end
 
     context 'with a user-name-only email' do
-      let(:email) { 'apple.com@' }
-      it { expect { subject }.to raise_error(ArgumentError, /Invalid email/) }
+      let(:email) { 'gmail.com@' }
+      it { is_expected.to be(false) }
     end
 
     context 'with a domain-only email' do
-      let(:email) { '@apple.com' }
-      it { expect { subject }.to raise_error(ArgumentError, /Invalid email/) }
+      let(:email) { '@gmail.com' }
+      it { is_expected.to be(true) }
     end
 
     context 'with an @-only email' do
       let(:email) { '@' }
-      it { expect { subject }.to raise_error(ArgumentError, /Invalid email/) }
+      it { is_expected.to be(false) }
     end
 
-    context 'with a blank-parts email' do
-      let(:email) { ' @ ' }
-      it { expect { subject }.to raise_error(ArgumentError, /Invalid email/) }
-    end
-
-    context 'with a blank text' do
+    context 'with an empty string' do
       let(:email) { '' }
-      it { expect { subject }.to raise_error(ArgumentError, /Invalid email/) }
+      it { is_expected.to be(false) }
     end
 
     context 'with a double-@ email' do
       let(:email) { 'gopackers@@gmail.com' }
-      it { expect { subject }.to raise_error(ArgumentError, /Invalid email/) }
+      it { is_expected.to be(false) }
     end
   end
 

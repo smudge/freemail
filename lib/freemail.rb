@@ -28,6 +28,6 @@ module Freemail
   end
 
   def self.get_domain(email)
-    email.split('@').last.downcase.strip
+    email.split('@')[1..-1]&.join('@')&.downcase&.strip
   end
 end

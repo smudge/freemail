@@ -22,6 +22,31 @@ describe Freemail do
       let(:email) { 'steve@apple.com' }
       it { is_expected.to be(false) }
     end
+
+    context 'with a user-name-only email' do
+      let(:email) { 'gmail.com@' }
+      it { is_expected.to be(false) }
+    end
+
+    context 'with a domain-only email' do
+      let(:email) { '@gmail.com' }
+      it { is_expected.to be(true) }
+    end
+
+    context 'with an @-only email' do
+      let(:email) { '@' }
+      it { is_expected.to be(false) }
+    end
+
+    context 'with an empty string' do
+      let(:email) { '' }
+      it { is_expected.to be(false) }
+    end
+
+    context 'with a double-@ email' do
+      let(:email) { 'gopackers@@gmail.com' }
+      it { is_expected.to be(false) }
+    end
   end
 
   describe '.disposable?' do
@@ -39,6 +64,21 @@ describe Freemail do
 
     context 'with a paid/private email' do
       let(:email) { 'steve@apple.com' }
+      it { is_expected.to be(false) }
+    end
+
+    context 'with a user-name-only email' do
+      let(:email) { '10minutemail.com@' }
+      it { is_expected.to be(false) }
+    end
+
+    context 'with a domain-only email' do
+      let(:email) { '@10minutemail.com' }
+      it { is_expected.to be(true) }
+    end
+
+    context 'with a double-@ email' do
+      let(:email) { 'gopackers@@10minutemail.com' }
       it { is_expected.to be(false) }
     end
   end

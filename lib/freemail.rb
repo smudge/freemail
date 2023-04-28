@@ -28,11 +28,6 @@ module Freemail
   end
 
   def self.get_domain(email)
-    parts = email.split('@').map { |s| s.downcase.strip }
-    if parts.size == 2 && parts.none?(&:empty?)
-      parts.last
-    else
-      raise ArgumentError, "Invalid email: #{email}"
-    end
+    email.split('@')[1..-1].join('@')&.downcase&.strip
   end
 end

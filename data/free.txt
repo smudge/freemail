@@ -617,6 +617,7 @@ cs.com
 csinibaba.hu
 cuemail.com
 cum.sborra.tk
+currently.com
 curio-city.com
 curtsmail.com
 cute-girl.com
@@ -724,6 +725,7 @@ drotposta.hu
 dubaimail.com
 dublin.com
 dublin.ie
+duck.com
 dumpmail.com
 dunlopdriver.com
 dunloprider.com
@@ -3163,6 +3165,7 @@ mystupidjob.com
 mythirdage.com
 myway.com
 myworldmail.com
+myyahoo.com
 n2.com
 n2baseball.com
 n2business.com
@@ -3322,6 +3325,7 @@ online.de
 online.ie
 online.nl
 onlinewiz.com
+onmail.com
 onmilwaukee.com
 onobox.com
 onvillage.com
@@ -3521,6 +3525,9 @@ prontomail.com
 prontomail.compopulus.net
 protestant.com
 protonmail.com
+protonmail.ch
+proton.me
+pm.me
 prydirect.info
 psv-supporter.com
 ptd.net

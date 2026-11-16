@@ -7,12 +7,12 @@ module Freemail
 
   def self.add_disposable_domains(custom_domains)
     custom_domains = [custom_domains] unless custom_domains.is_a? Array
-    custom_domains.each { |domain| DISPOSABLE[domain] = nil }
+    custom_domains.each { |domain| DISPOSABLE[domain.downcase.strip] = nil }
   end
 
   def self.add_free_domains(custom_domains)
     custom_domains = [custom_domains] unless custom_domains.is_a? Array
-    custom_domains.each { |domain| FREE[domain] = nil }
+    custom_domains.each { |domain| FREE[domain.downcase.strip] = nil }
   end
 
   def self.free?(email)

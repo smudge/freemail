@@ -120,6 +120,11 @@ describe Freemail do
       before { Freemail.add_free_domains([domain]) }
       it { is_expected.to be(true) }
     end
+
+    context 'with a mixed-case, padded domain' do
+      before { Freemail.add_free_domains('  APPLE.COM  ') }
+      it { is_expected.to be(true) }
+    end
   end
 
   describe '.add_disposable_domains' do
@@ -138,6 +143,11 @@ describe Freemail do
 
     context 'with a list of additional domains' do
       before { Freemail.add_disposable_domains([domain]) }
+      it { is_expected.to be(true) }
+    end
+
+    context 'with a mixed-case, padded domain' do
+      before { Freemail.add_disposable_domains('  APPLE.COM  ') }
       it { is_expected.to be(true) }
     end
   end

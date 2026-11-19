@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+export LC_ALL=C
+
+scratch=$(mktemp -d)
+trap 'rm -rf "$scratch"' EXIT
+
+normalize() {
+  sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//' -e '/^$/d' |
+    tr '[:upper:]' '[:lower:]' | sort -u
+}
+
+normalize < data/blocklist.txt > "$scratch/blocklist"
+
+curl -fLsS --retry 2 --connect-timeout 10 --max-time 120 \
+  https://raw.githubusercontent.com/ivolo/disposable-email-domains/master/index.json |
+  jq -er 'if (type == "array") and all(.[]; type == "string") then .[] else error("expected string array") end' > "$scratch/new-disposable"
+
+cat "$scratch/new-disposable" data/disposable.txt | normalize |
+  comm -23 - "$scratch/blocklist" > "$scratch/disposable"
+
+: > "$scratch/new-free"
+fetched=0
+while IFS= read -r source || [[ -n "$source" ]]; do
+  [[ -z "$source" || "$source" == \#* ]] && continue
+  if curl -fLsS --retry 2 --connect-timeout 10 --max-time 60 "$source" > "$scratch/source"; then
+    cat "$scratch/source" >> "$scratch/new-free"
+    printf '\n' >> "$scratch/new-free"
+    ((fetched += 1))
+  else
+    echo "Could not fetch $source" >&2
+  fi
+done < data/sources.txt
+
+if (( fetched == 0 )); then
+  echo 'No free-domain sources available' >&2
+  exit 1
+fi
+
+cat "$scratch/new-free" data/free.txt | normalize |
+  comm -23 - "$scratch/blocklist" |
+  comm -23 - "$scratch/disposable" > "$scratch/free"
+
+cat "$scratch/disposable" > data/disposable.txt
+cat "$scratch/free" > data/free.txt

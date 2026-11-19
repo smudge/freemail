@@ -31,4 +31,4 @@ jobs:
           delete-branch: true
           commit-message: Sync domain lists
           title: Sync domain lists
-          body: Synced from npm freemail's sources.
+          body: Synced with npm freemail's published data.

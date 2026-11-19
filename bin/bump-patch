@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+file = File.expand_path('../lib/freemail/version.rb', __dir__)
+current = File.read(file)
+updated = current.sub(/(VERSION = ')(\d+)\.(\d+)\.(\d+)(')/) do
+  "#{$1}#{$2}.#{$3}.#{$4.to_i + 1}#{$5}"
+end
+abort 'Missing version' if current == updated
+File.write(file, updated)

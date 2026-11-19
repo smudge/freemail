@@ -2,3 +2,5 @@
 .findhere.com
 .freeservers.com
 .zzn.com
+nospammail.net
+scientist.com

@@ -1,47 +1,34 @@
 #!/usr/bin/env bash
 set -euo pipefail
-
 cd "$(dirname "$0")/.."
 export LC_ALL=C
 
-scratch=$(mktemp -d)
-trap 'rm -rf "$scratch"' EXIT
+tmp=$(mktemp -d)
+trap 'rm -rf "$tmp"' EXIT
 
 normalize() {
   sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//' -e '/^$/d' |
     tr '[:upper:]' '[:lower:]' | sort -u
 }
 
-normalize < data/blocklist.txt > "$scratch/blocklist"
+normalize < data/blocklist.txt > "$tmp/blocklist"
+
+# Snapshot from the last npm freemail release (2020).
+curl -fLsS --retry 2 --connect-timeout 10 --max-time 120 \
+  https://raw.githubusercontent.com/ivolo/disposable-email-domains/2c91490577e2eaf6dfd4751e42501e8be62f9c94/index.json > "$tmp/disposable.json"
+jq -er 'if type == "array" and length > 0 and all(.[]; type == "string") then .[] else error("invalid disposable list") end' \
+  "$tmp/disposable.json" > "$tmp/new-disposable"
 
 curl -fLsS --retry 2 --connect-timeout 10 --max-time 120 \
-  https://raw.githubusercontent.com/ivolo/disposable-email-domains/master/index.json |
-  jq -er 'if (type == "array") and all(.[]; type == "string") then .[] else error("expected string array") end' > "$scratch/new-disposable"
+  https://raw.githubusercontent.com/willwhite/freemail/master/data/free.txt > "$tmp/new-free"
+test -s "$tmp/new-free"
 
-cat "$scratch/new-disposable" data/disposable.txt | normalize |
-  comm -23 - "$scratch/blocklist" > "$scratch/disposable"
+cat data/disposable.txt "$tmp/new-disposable" | normalize |
+  comm -23 - "$tmp/blocklist" > "$tmp/disposable"
 
-: > "$scratch/new-free"
-fetched=0
-while IFS= read -r source || [[ -n "$source" ]]; do
-  [[ -z "$source" || "$source" == \#* ]] && continue
-  if curl -fLsS --retry 2 --connect-timeout 10 --max-time 60 "$source" > "$scratch/source"; then
-    cat "$scratch/source" >> "$scratch/new-free"
-    printf '\n' >> "$scratch/new-free"
-    ((fetched += 1))
-  else
-    echo "Could not fetch $source" >&2
-  fi
-done < data/sources.txt
+cat data/free.txt "$tmp/new-free" | normalize |
+  comm -23 - "$tmp/blocklist" |
+  comm -23 - "$tmp/disposable" > "$tmp/free"
 
-if (( fetched == 0 )); then
-  echo 'No free-domain sources available' >&2
-  exit 1
-fi
-
-cat "$scratch/new-free" data/free.txt | normalize |
-  comm -23 - "$scratch/blocklist" |
-  comm -23 - "$scratch/disposable" > "$scratch/free"
-
-cat "$scratch/disposable" > data/disposable.txt
-cat "$scratch/free" > data/free.txt
+cat "$tmp/disposable" > data/disposable.txt
+cat "$tmp/free" > data/free.txt

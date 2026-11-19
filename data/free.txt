@@ -617,8 +617,8 @@ cs.com
 csinibaba.hu
 cuemail.com
 cum.sborra.tk
-currently.com
 curio-city.com
+currently.com
 curtsmail.com
 cute-girl.com
 cuteandcuddly.com
@@ -3457,6 +3457,7 @@ playersodds.com
 playful.com
 plus.com
 plusmail.com.br
+pm.me
 pmail.net
 pobox.hu
 pobox.sk
@@ -3524,10 +3525,9 @@ promessage.com
 prontomail.com
 prontomail.compopulus.net
 protestant.com
-protonmail.com
-protonmail.ch
 proton.me
-pm.me
+protonmail.ch
+protonmail.com
 prydirect.info
 psv-supporter.com
 ptd.net

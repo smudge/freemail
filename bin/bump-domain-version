@@ -1,0 +1,48 @@
+#!/usr/bin/env ruby
+require 'open3'
+require 'set'
+
+module DomainVersion
+  THRESHOLD_PERCENT = 5
+
+  def self.entries(free, disposable)
+    Set.new(free.map { |domain| "free:#{domain.strip}" } +
+            disposable.map { |domain| "disposable:#{domain.strip}" })
+  end
+
+  def self.bump_type(previous, current)
+    return nil if previous == current
+    return :minor if previous.empty?
+
+    changes = (previous - current).size + (current - previous).size
+    changes * 100 >= previous.size * THRESHOLD_PERCENT ? :minor : :patch
+  end
+
+  def self.previous_domains(path)
+    output, status = Open3.capture2('git', 'show', "HEAD:#{path}")
+    abort "Unable to read committed #{path}" unless status.success?
+    output.lines
+  end
+
+  def self.run
+    previous = entries(previous_domains('data/free.txt'),
+                       previous_domains('data/disposable.txt'))
+    current = entries(File.readlines('data/free.txt'),
+                      File.readlines('data/disposable.txt'))
+    type = bump_type(previous, current)
+    return unless type
+
+    version_file = 'lib/freemail/version.rb'
+    content = File.read(version_file)
+    updated = content.sub(/(VERSION = ')(\d+)\.(\d+)\.(\d+)(')/) do
+      major, minor, patch = $2.to_i, $3.to_i, $4.to_i
+      type == :minor ? "#{$1}#{major}.#{minor + 1}.0#{$5}" :
+                       "#{$1}#{major}.#{minor}.#{patch + 1}#{$5}"
+    end
+    abort 'Missing version' if updated == content
+    File.write(version_file, updated)
+    puts "Bumped #{type} for #{(previous - current).size + (current - previous).size} domain changes (#{previous.size} previous entries)"
+  end
+end
+
+DomainVersion.run if $PROGRAM_NAME == __FILE__

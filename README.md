@@ -1,4 +1,4 @@
-# Freemail [![Test](https://github.com/smudge/freemail/actions/workflows/test.yml/badge.svg)](https://github.com/smudge/freemail/actions/workflows/test.yml)
+# Freemail [![Test](https://github.com/smudge/freemail/actions/workflows/test.yml/badge.svg)](https://github.com/smudge/freemail/actions/workflows/test.yml) [![RubyGems downloads](https://img.shields.io/gem/dt/freemail.svg)](https://rubygems.org/gems/freemail)
 
 A ruby implementation of the npm [freemail](https://github.com/willwhite/freemail) module, which
 provides a database of free and [disposable](http://en.wikipedia.org/wiki/Disposable_email_address)

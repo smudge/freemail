@@ -28,9 +28,10 @@ jobs:
           add-paths: |
             data/free.txt
             data/disposable.txt
+            data/addlist.txt
             lib/freemail/version.rb
           branch: chore/update-domains
           delete-branch: true
           commit-message: Sync domain lists
           title: Sync domain lists
-          body: Synced with pinned upstream domain data; version bump reflects the effective list delta.
+          body: Update domain lists from upstream.

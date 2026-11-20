@@ -21,10 +21,7 @@ jobs:
         with:
           ruby-version: '3.3'
           bundler-cache: true
-      - run: |
-          if ! git diff --quiet -- data/free.txt data/disposable.txt; then
-            ruby bin/bump-patch
-          fi
+      - run: ruby bin/bump-domain-version
       - run: bundle exec rake spec
       - uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # v7
         with:
@@ -36,4 +33,4 @@ jobs:
           delete-branch: true
           commit-message: Sync domain lists
           title: Sync domain lists
-          body: Synced with npm freemail's published data.
+          body: Synced with pinned upstream domain data; version bump reflects the effective list delta.

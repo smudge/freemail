@@ -1,6 +1,6 @@
 require 'spec_helper'
 require 'set'
-require_relative '../bin/bump-domain-version'
+load File.expand_path('../bin/bump-domain-version', __dir__)
 
 describe DomainVersion do
   def domains(count)

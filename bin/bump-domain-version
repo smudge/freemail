@@ -3,7 +3,7 @@ require 'open3'
 require 'set'
 
 module DomainVersion
-  THRESHOLD_PERCENT = 5
+  THRESHOLD_PERCENT = 2
 
   def self.entries(free, disposable)
     Set.new(free.map { |domain| "free:#{domain.strip}" } +

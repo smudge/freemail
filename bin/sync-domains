@@ -12,6 +12,8 @@ normalize() {
 }
 
 normalize < data/blocklist.txt > "$tmp/blocklist"
+normalize < data/addlist.txt > "$tmp/addlist"
+normalize < data/disposable.txt > "$tmp/previous-disposable"
 
 # Pinned historical checkpoint: July 29, 2020.
 # Advance this SHA in reviewed steps before tracking current upstream.
@@ -24,14 +26,20 @@ curl -fLsS --retry 2 --connect-timeout 10 --max-time 120 \
   https://raw.githubusercontent.com/willwhite/freemail/master/data/free.txt > "$tmp/new-free"
 test -s "$tmp/new-free"
 
-# Preserve published domains that upstream no longer lists. Removals should
-# be reconciled explicitly rather than silently changing classifications.
-cat data/disposable.txt "$tmp/new-disposable" | normalize |
+normalize < "$tmp/new-disposable" > "$tmp/upstream-disposable"
+
+# Keep domains dropped by upstream until explicitly excluded.
+comm -23 "$tmp/previous-disposable" "$tmp/upstream-disposable" > "$tmp/removed"
+cat "$tmp/addlist" "$tmp/removed" | normalize |
+  comm -23 - "$tmp/blocklist" > "$tmp/next-addlist"
+
+cat "$tmp/upstream-disposable" "$tmp/next-addlist" | normalize |
   comm -23 - "$tmp/blocklist" > "$tmp/disposable"
 
 cat data/free.txt "$tmp/new-free" | normalize |
   comm -23 - "$tmp/blocklist" |
   comm -23 - "$tmp/disposable" > "$tmp/free"
 
+cat "$tmp/next-addlist" > data/addlist.txt
 cat "$tmp/disposable" > data/disposable.txt
 cat "$tmp/free" > data/free.txt

@@ -15,10 +15,10 @@ normalize < data/blocklist.txt > "$tmp/blocklist"
 normalize < data/addlist.txt > "$tmp/addlist"
 normalize < data/disposable.txt > "$tmp/previous-disposable"
 
-# Pinned historical checkpoint: September 29, 2020.
+# Pinned historical checkpoint: October 11, 2020.
 # Advance this SHA in reviewed steps before tracking current upstream.
 curl -fLsS --retry 2 --connect-timeout 10 --max-time 120 \
-  https://raw.githubusercontent.com/tompec/disposable-email-domains/ab9e0704050c6701049415aea0cae71b20b991e7/index.json > "$tmp/disposable.json"
+  https://raw.githubusercontent.com/tompec/disposable-email-domains/6a98ee439b3b052ea7a084c75599901c3ddd8d01/index.json > "$tmp/disposable.json"
 jq -er 'if type == "array" and length > 0 and all(.[]; type == "string") then .[] else error("invalid disposable list") end' \
   "$tmp/disposable.json" > "$tmp/new-disposable"
 

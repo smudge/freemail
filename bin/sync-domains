@@ -12,10 +12,13 @@ normalize() {
 }
 
 normalize < data/blocklist.txt > "$tmp/blocklist"
+normalize < data/addlist.txt > "$tmp/addlist"
+normalize < data/disposable.txt > "$tmp/previous-disposable"
 
-# Snapshot from the last npm freemail release (2020).
+# Pinned historical checkpoint: July 29, 2020.
+# Advance this SHA in reviewed steps before tracking current upstream.
 curl -fLsS --retry 2 --connect-timeout 10 --max-time 120 \
-  https://raw.githubusercontent.com/ivolo/disposable-email-domains/2c91490577e2eaf6dfd4751e42501e8be62f9c94/index.json > "$tmp/disposable.json"
+  https://raw.githubusercontent.com/tompec/disposable-email-domains/5cbfa33531fe9ba531f5e5a3fe7ca882b785e160/index.json > "$tmp/disposable.json"
 jq -er 'if type == "array" and length > 0 and all(.[]; type == "string") then .[] else error("invalid disposable list") end' \
   "$tmp/disposable.json" > "$tmp/new-disposable"
 
@@ -23,12 +26,20 @@ curl -fLsS --retry 2 --connect-timeout 10 --max-time 120 \
   https://raw.githubusercontent.com/willwhite/freemail/master/data/free.txt > "$tmp/new-free"
 test -s "$tmp/new-free"
 
-cat data/disposable.txt "$tmp/new-disposable" | normalize |
+normalize < "$tmp/new-disposable" > "$tmp/upstream-disposable"
+
+# Keep domains dropped by upstream until explicitly excluded.
+comm -23 "$tmp/previous-disposable" "$tmp/upstream-disposable" > "$tmp/removed"
+cat "$tmp/addlist" "$tmp/removed" | normalize |
+  comm -23 - "$tmp/blocklist" > "$tmp/next-addlist"
+
+cat "$tmp/upstream-disposable" "$tmp/next-addlist" | normalize |
   comm -23 - "$tmp/blocklist" > "$tmp/disposable"
 
 cat data/free.txt "$tmp/new-free" | normalize |
   comm -23 - "$tmp/blocklist" |
   comm -23 - "$tmp/disposable" > "$tmp/free"
 
+cat "$tmp/next-addlist" > data/addlist.txt
 cat "$tmp/disposable" > data/disposable.txt
 cat "$tmp/free" > data/free.txt

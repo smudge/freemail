@@ -14,6 +14,7 @@ RSpec.describe 'domain synchronization' do
       File.write(File.join(@data, 'disposable.txt'), "old-disposable.test\nnospammail.net\nblocked.test\n")
       File.write(File.join(@data, 'free.txt'), "free.test\nold-disposable.test\nscientist.com\n")
       File.write(File.join(@data, 'blocklist.txt'), "blocked.test\nnospammail.net\nscientist.com\n")
+      File.write(File.join(@data, 'addlist.txt'), "manual.test\n")
 
       mock_bin = File.join(root, 'mock-bin')
       FileUtils.mkdir_p mock_bin
@@ -21,7 +22,7 @@ RSpec.describe 'domain synchronization' do
         #!/bin/sh
         for url do :; done
         case "$url" in
-          *ivolo/disposable-email-domains/*)
+          *tompec/disposable-email-domains/*)
             [ "$FAIL_SOURCE" = disposable ] && exit 22
             if [ "$FAIL_SOURCE" = invalid ]; then
               printf '%s\n' '{"domains":[]}'
@@ -52,7 +53,8 @@ RSpec.describe 'domain synchronization' do
     2.times do
       _out, err, status = sync
       expect(status.success?).to be(true), err
-      expect(domains('disposable')).to eq(%w[free.test new-disposable.test old-disposable.test])
+      expect(domains('disposable')).to eq(%w[free.test manual.test new-disposable.test old-disposable.test])
+      expect(domains('addlist')).to eq(%w[manual.test old-disposable.test])
       expect(domains('free')).to eq(%w[new-free.test])
     end
   end
@@ -60,11 +62,12 @@ RSpec.describe 'domain synchronization' do
   %w[disposable free invalid].each do |failure|
     it "preserves data when #{failure} source fails" do
       @env['FAIL_SOURCE'] = failure
-      before = %w[free disposable].to_h { |name| [name, domains(name)] }
+      before = %w[free disposable addlist].to_h { |name| [name, domains(name)] }
       _out, _err, status = sync
       expect(status.success?).to be(false)
       expect(domains('free')).to eq(before.fetch('free'))
       expect(domains('disposable')).to eq(before.fetch('disposable'))
+      expect(domains('addlist')).to eq(before.fetch('addlist'))
     end
   end
 end

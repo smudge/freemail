@@ -16,6 +16,7 @@ Gem::Specification.new do |spec|
   END
   spec.homepage      = 'https://github.com/smudge/freemail'
   spec.license       = 'MIT'
+  spec.required_ruby_version = '>= 2.3'
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = 'exe'

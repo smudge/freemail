@@ -1,3 +1,4 @@
+0.mail.mujur.id
 1.atm-mi.cf
 1.atm-mi.ga
 1.atm-mi.gq
@@ -61,6 +62,7 @@ aw.kikwet.com
 aws.creo.site
 awzg.office.gy
 ayuh.myvnc.com
+b.comexa.uk
 b.kerl.gq
 b9x45v1m.com.com
 babykefdsdsd0-180.com
@@ -88,6 +90,7 @@ ca.verisign.ga
 ca.verisign.gq
 cachon.netmail.tk
 cad.edu.creo.tips
+caliburn.us
 caramail.d3vs.net
 cazlg.com
 cazlp.com
@@ -100,6 +103,7 @@ cms-rt.com.com
 co.10mail.tk
 com.motifasidiri.website
 comm.craigslist.org
+contact.neverstop.us.kg
 cool.fr.nf
 corona.is.bullsht.dedyn.io
 courriel.fr.nf
@@ -107,6 +111,7 @@ creo.ctu.edu.gr
 creo.iotu.nctu.me
 creo.nctu.me
 crypto.tyrex.cf
+cudimex.comsbkg7.redds.siteg7.redds.site
 cwmxc.com
 d.bgsaddrmwn.me
 d.megafon.org.ua
@@ -138,7 +143,9 @@ edu.creo.site
 edu.dmtc.dev
 edu.dmtc.press
 edu.hstu.eu.org
+edu.kg
 edu.net
+edu.pl
 eik8a.avr.ze.cx
 email.comx.cf
 email.infokehilangan.com
@@ -150,6 +157,7 @@ epostmail.comx.cf
 ereg4.brushemail.com
 eu.dlink.cf
 eu.dlink.gq
+eu.org
 extanewsmi.zzux.com
 extremail.ru
 f.bgsaddrmwn.me
@@ -245,6 +253,7 @@ hous.craigslist.org
 hthlm.com
 hxisewksjskwkkww89101929.unaux.com
 i.bgsaddrmwn.me
+id.vn
 ilboard.r-e.kr
 ilt.ctu.edu.gr
 in.mailsac.com
@@ -293,6 +302,7 @@ lopl.co.cc
 love.vo.uk
 lpo.ddnsfree.com
 lsyx0.rr.nu
+ltrs.webhop.me
 ltuc.edu.eu.org
 lycos.comx.cf
 m.cloudns.cl
@@ -320,6 +330,7 @@ mail.mrgamin.ml
 mail.omahsimbah.com
 mail.ptcu.dev
 mail.vuforia.us
+mail.wvwvw.tech
 mail1.mungmung.o-r.kr
 mail123.netmail.tk
 mailbox.comx.cf
@@ -347,16 +358,19 @@ mustbe.ignorelist.com
 mx0.wwwnew.eu
 mx18.mailr.eu
 mx19.mailr.eu
+my.id
 mymail.infos.st
 n.spamtrap.co
 nasa.iotu.nctu.me
 nbmbb.com
 ncov.office.gy
+nom.za
 now.mefound.com
 nthrl.com
 nthrw.com
 ntt.gotdns.ch
 nvhrw.com
+nyc.mn
 o.opendns.ro
 oc.gan.manzmail.online
 office.ms365.ml
@@ -387,6 +401,7 @@ pw.loyalherceghalom.ml
 q.new-mgmt.ga
 q7t43q92.com.com
 qcmail.qc.to
+qdo3.test1byali.cfd
 qt.dprots.com
 quichebedext.freetcp.com
 reko.10mail.tk
@@ -402,6 +417,7 @@ sagiri.aa.am
 sale.craigslist.org
 sceenic.com
 schools.nyc.org
+sdm.samdang.io.vn
 senseless-entertainment.com
 serv.craigslist.org
 sexy.camdvr.org
@@ -456,6 +472,7 @@ us.dlink.cf
 us.dlink.gq
 usa.isgre.at
 usaf.dmtc.press
+usedu.ccwu.cc
 ux.uk.to
 v.northibm.com
 vc.taluabushop.com
@@ -470,6 +487,7 @@ wallus.casinokun.hu
 wasd.10mail.tk
 wasd.netmail.tk
 web.discard-email.cf
+web.id
 wegwerfemail.com
 wellhungup.dynu.net
 wenhsuan.myddns.me
@@ -511,6 +529,7 @@ ypmail.webarnak.fr.eu.org
 ypq.netmail.tk
 ytnhy.com
 za.com
+zamana.com
 zeroe.ml
 zis.netmail.tk
 zvus.spymail.one
